@@ -1,42 +1,70 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
-      theme: ThemeData(
-        // useMaterial3: false,
-        primarySwatch: Colors.blue,
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Abril Cisneros 1162'),
+        ),
+        body: Center(
+          child: AttributeContainer(
+            nombre: 'Abril Cisneros',
+            id: '1162',
+            edad: 17,
+          ),
+        ),
       ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
+class AttributeContainer extends StatelessWidget {
+  final String nombre;
+  final String id;
+  final int edad;
+
+  AttributeContainer({
+    required this.nombre,
+    required this.id,
+    required this.edad,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
+    return Container(
+      width: 300,
+      padding: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.purple, // Color morado
+        borderRadius: BorderRadius.circular(10), // Bordes redondeados
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.3), // Sombra
+            spreadRadius: 3,
+            blurRadius: 5,
+            offset: Offset(0, 3), // Desplazamiento de la sombra
+          )
+        ],
       ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
-        ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Nombre: $nombre',
+              style: TextStyle(color: Colors.white, fontSize: 18)),
+          SizedBox(height: 10),
+          Text('ID: $id', style: TextStyle(color: Colors.white, fontSize: 18)),
+          SizedBox(height: 10),
+          Text('Edad: $edad',
+              style: TextStyle(color: Colors.white, fontSize: 18)),
+        ],
       ),
     );
   }
